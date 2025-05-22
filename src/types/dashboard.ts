@@ -1,4 +1,3 @@
-import { DateRange } from 'react-day-picker';
 
 export type ActionItemType = 'warning' | 'opportunity' | 'success';
 
@@ -346,3 +345,25 @@ export interface GitHubIssue {
   };
   requested_reviewers?: Array<{ login: string }>;
 } 
+
+export interface GitHubPRData {
+  pullRequests: {
+    id: string;
+    title: string;
+    state: string;
+    created_at: string;
+    closed_at: string | null;
+    isDraft: boolean;
+    isMerged: boolean;
+    url: string;
+    number: number;
+    assignee?: string;
+    reviews: Array<{
+      state: 'APPROVED' | 'CHANGES_REQUESTED' | 'COMMENTED';
+      author: { login: string };
+    }>;
+    ciStatus?: 'SUCCESS' | 'FAILURE' | 'PENDING' | 'ERROR';
+    status: string;
+  }[];
+  timestamp: number;
+}
